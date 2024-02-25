@@ -2,20 +2,28 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Circle Game</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circle Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="container">
-        <div id="circle"></div>
-        <div id="animal"></div>
-        <div id="timer"></div>
-        <div id="score"></div>
+  <div id="container">
+    <div class="player-container" id="player1">
+      <div class="player-name" id="player1-name"></div>
+      <div class="player-circle" id="player1-circle"></div>
+      <div class="player-score" id="player1-score">Score: 0</div>
     </div>
-    <script src="script.js"></script>
+    <div class="player-container" id="player2">
+      <div class="player-name" id="player2-name"></div>
+      <div class="player-circle" id="player2-circle"></div>
+      <div class="player-score" id="player2-score">Score: 0</div>
+    </div>
+    <div id="animal"></div>
+    <div id="timer"></div>
+  </div>
+  <script src="script.js"></script>
 </body>
 
 </html>
