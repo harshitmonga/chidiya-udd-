@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#container {
+    position: relative;
+}
+
+#circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: blue;
+    margin: 50px auto;
+    cursor: pointer;
+}
+
+#animal {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#timer {
+    font-size: 18px;
+}
+
+#score {
+    font-size: 18px;
+}
