@@ -1,40 +1,57 @@
 body {
   font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
   text-align: center;
 }
 
-#container {
+h1 {
+  color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#game-area {
   position: relative;
+  margin: 50px auto;
 }
 
-.player-container {
-  display: inline-block;
-  margin: 20px;
-}
-
-.player-name {
-  font-size: 18px;
-}
-
-.player-circle {
+#circle {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   background-color: blue;
-  margin-top: 20px;
-  /* Adjust margin as needed */
+  margin: 0 auto;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 0px 20px rgba(0, 0, 255, 0.7);
 }
 
-.player-score {
-  font-size: 18px;
+#circle:hover {
+  transform: scale(1.1);
+}
+
+#circle:active {
+  transform: scale(0.9);
 }
 
 #animal {
   font-size: 24px;
   margin-top: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #timer {
   font-size: 18px;
+  color: #555;
+  margin-top: 10px;
+}
+
+#score {
+  font-size: 24px;
+  margin-top: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }

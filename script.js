@@ -1,52 +1,39 @@
-let player1Score = 0;
-let player2Score = 0;
-let currentPlayer = 1;
+let score = 0;
 let timer;
 
-const player1Name = prompt("Enter Player 1 Name:");
-const player2Name = prompt("Enter Player 2 Name:");
-document.getElementById('player1-name').textContent = `${player1Name}'s Circle`;
-document.getElementById('player2-name').textContent = `${player2Name}'s Circle`;
-
-const player1Circle = document.getElementById('player1-circle');
-const player2Circle = document.getElementById('player2-circle');
+const circle = document.getElementById('circle');
 const animal = document.getElementById('animal');
 const timerDisplay = document.getElementById('timer');
-const player1ScoreDisplay = document.getElementById('player1-score');
-const player2ScoreDisplay = document.getElementById('player2-score');
+const scoreDisplay = document.getElementById('score');
 
-player1Circle.addEventListener('mousedown', () => startGame(1));
-player1Circle.addEventListener('touchstart', () => startGame(1));
-player2Circle.addEventListener('mousedown', () => startGame(2));
-player2Circle.addEventListener('touchstart', () => startGame(2));
+circle.addEventListener('mousedown', startGame);
+circle.addEventListener('touchstart', startGame);
 
-function startGame(player) {
-  currentPlayer = player;
-  if (player === 1) {
-    player1Circle.style.backgroundColor = 'green';
-  } else {
-    player2Circle.style.backgroundColor = 'green';
-  }
+function startGame() {
+  circle.style.backgroundColor = 'green';
   generateRandomAnimal();
   let timeLeft = 3;
-  timerDisplay.textContent = timeLeft;
-  timer = setInterval(() => {
-    timeLeft--;
-    if (timeLeft <= 0) {
-      endGame();
-    } else {
-      timerDisplay.textContent = timeLeft;
-    }
-  }, 1000);
+  updateTimer(timeLeft);
 }
 
-function endGame() {
-  clearInterval(timer);
-  if (currentPlayer === 1) {
-    player1Circle.style.backgroundColor = 'blue';
+function updateTimer(timeLeft) {
+  timerDisplay.textContent = `Time Left: ${timeLeft}`;
+  if (timeLeft === 0) {
+    endGame();
   } else {
-    player2Circle.style.backgroundColor = 'blue';
+    timer = setTimeout(() => {
+      updateTimer(timeLeft - 1);
+    }, 1000);
   }
+}
+
+circle.addEventListener('mouseup', endGame);
+circle.addEventListener('touchend', endGame);
+
+function endGame() {
+  clearTimeout(timer);
+  circle.style.backgroundColor = 'blue';
+  animal.textContent = '';
 }
 
 function generateRandomAnimal() {
@@ -65,24 +52,12 @@ function generateRandomAnimal() {
 
   const randomIndex = Math.floor(Math.random() * animals.length);
   const randomAnimal = animals[randomIndex];
-
   animal.textContent = randomAnimal.name;
 
-  if ((currentPlayer === 1 && player1Circle.style.backgroundColor === 'green') ||
-    (currentPlayer === 2 && player2Circle.style.backgroundColor === 'green')) {
+  if (circle.style.backgroundColor === 'green') {
     if (randomAnimal.canFly) {
-      if (currentPlayer === 1) {
-        player1Score++;
-        player1ScoreDisplay.textContent = `Score: ${player1Score}`;
-      } else {
-        player2Score++;
-        player2ScoreDisplay.textContent = `Score: ${player2Score}`;
-      }
+      score++;
+      scoreDisplay.textContent = `Score: ${score}`;
     }
-  }
-
-  if (player1Score === 10 || player2Score === 10) {
-    const winner = player1Score === 10 ? `${player1Name} wins!` : `${player2Name} wins!`;
-    alert(winner);
   }
 }
