@@ -27,8 +27,18 @@ function updateTimer(timeLeft) {
   }
 }
 
-circle.addEventListener('mouseup', endGame);
-circle.addEventListener('touchend', endGame);
+circle.addEventListener('mouseup', checkScore);
+circle.addEventListener('touchend', checkScore);
+
+function checkScore() {
+  clearTimeout(timer);
+  const isFlying = animal.dataset.canFly === 'true';
+  if ((circle.style.backgroundColor === 'green' && isFlying) || (circle.style.backgroundColor === 'blue' && !isFlying)) {
+    score++;
+    scoreDisplay.textContent = `Score: ${score}`;
+  }
+  circle.style.backgroundColor = 'blue';
+}
 
 function endGame() {
   clearTimeout(timer);
@@ -53,11 +63,5 @@ function generateRandomAnimal() {
   const randomIndex = Math.floor(Math.random() * animals.length);
   const randomAnimal = animals[randomIndex];
   animal.textContent = randomAnimal.name;
-
-  if (circle.style.backgroundColor === 'green') {
-    if (randomAnimal.canFly) {
-      score++;
-      scoreDisplay.textContent = `Score: ${score}`;
-    }
-  }
+  animal.dataset.canFly = randomAnimal.canFly;
 }
